@@ -1,0 +1,3 @@
+idées de code rigolo :
+
+toruver les mots qui, une fois séparés en deux (ou plus) forme plusieurs mots (ex = parfois -> par fois)

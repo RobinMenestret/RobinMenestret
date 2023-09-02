@@ -1,0 +1,31 @@
+quatre vingts mille    80 000
+quatre mille  vingts    4 020
+vingts mille  quatre   20 004
+vingts quatre mille    24 000
+mille  quatre vingts    1 080
+mille  vingts quatre    1 024
+
+cent   quatre vingts mille     180 000
+cent   quatre mille  vingts    104 020
+cent   vingts mille  quatre    120 004
+cent   vingts quatre mille     124 000
+cent   mille  quatre vingts    100 080
+cent   mille  vingts quatre    100 024
+quatre cent   vingts mille     420 000
+quatre cent   mille  vingts    400 020
+vingts cent   mille  quatre    
+vingts cent   quatre mille     
+mille  cent   quatre vingts      1 180
+mille  cent   vingts quatre      1 124
+quatre vingts cent   mille      
+quatre mille  cent   vingts      4 120
+vingts mille  cent   quatre     20 104
+vingts quatre cent   mille     
+mille  quatre cent   vingts      1 420
+mille  vingts cent   quatre    
+quatre vingts mille  cent       80 100
+quatre mille  vingts cent      
+vingts mille  quatre cent       20 400
+vingts quatre mille  cent       24 100
+mille  quatre vingts cent      
+mille  vingts quatre cent      
