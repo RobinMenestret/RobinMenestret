@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @RobinMenestret
 - 👀 I’m interested in mathematics and computer science
-- 🌱 I’m currently learning python and C++ for Arduino
+- 🌱 I’m currently learning python and C for Arduino
 - 📫 How to reach me : robin.menestret@gmail.com
 
 <!---
