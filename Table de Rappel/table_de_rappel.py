@@ -53,7 +53,7 @@ table = {
                     43 : "Croix",           # Sonorité proche
                     44 : "Quatre quarts",   # Sonorité proche
                     45 : "Bombe",           # Bombe nucléaire de 1945
-                    46 : "lèvre",           # Sonorité proche de kiss -> bisou
+                    46 : "Cassis",           # Sonorité proche de kiss -> bisou
                     47 : "Cassette",        # Sonorité proche
                     48 : "Carotte cuite",   # Sonorité proche
                     49 : "Carafe",          # Sonorité proche
@@ -71,7 +71,24 @@ table = {
                     61 : "Flûte",           # Sonorité proche de Sylvain -> Durif -> flûte de pan
                     62 : "Nez",             # Département des caps nez
                     63 : "Soie",            # Sonorité proche
-                    64 : ""
+                    64 : "Riz",             # L'histoire de l'echiquier
+                    65 : "Dentier",         # Age de la retraire
+                    66 : "Trident",         # Chiffres du diable
+                    67 : "Bretzel",         # Departement d'Alsace
+                    68 : "Télé",            # Année de Naissance de mon père
+                    69 : "Chapeau",         # Couvre chef
+                    70 : "Raie",            # Haute-Sâone -> Ré sur Sâone
+                    71 : "Vase",            # Ressemble à Soisson 
+                    72 : "Ventouse",        # Sonorité proche
+                    74 : "Livre",           # Année de naissance de ma mère
+                    75 : "Pyramide",        # Paris -> Louvre
+                    76 : "Container",       # Seine-maritime : Le Havre
+                    77 : "Coquelicot",      # Symbole du département
+                    78 : "Chateau",         # Versailles
+                    79 : "Donut",           # Rime avec Duff -> Homer Simpson
+                    80 : "Coeur",           # Napoléon
+                    81 : "Raisin",          # Tarn
+                    82 : "Olive",           # Ressemble à 80 dieux -> Grèce
                     
     }
 
@@ -113,7 +130,7 @@ def init_score(table_de_rappel, player_name, init_score = 5):
         erase = True if erase.lower() == 'y' else False
     if erase :
         scores = dict()
-        for i in range(len(table_de_rappel)):
+        for i in range(len(table_de_rappel)+1):
             scores[i] = [init_score, init_score]
         with open(path, 'w') as f:
             f.write(str(scores))
@@ -123,7 +140,7 @@ def init_score(table_de_rappel, player_name, init_score = 5):
         if add:
             with open(path, 'r') as f:
                 scores = ast.literal_eval(f.read())
-            for i in range(len(table_de_rappel)):
+            for i in range(len(table_de_rappel)+1):
                 if i not in scores : 
                     scores[i] = [init_score, init_score]
             with open(path, 'w') as f:
