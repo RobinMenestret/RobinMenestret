@@ -80,6 +80,7 @@ table = {
                     70 : "Raie",            # Haute-Sâone -> Ré sur Sâone
                     71 : "Vase",            # Ressemble à Soisson 
                     72 : "Ventouse",        # Sonorité proche
+                    73 : "Drapeau",         # Numero fetiche de Sheldon dans Tbbt
                     74 : "Livre",           # Année de naissance de ma mère
                     75 : "Pyramide",        # Paris -> Louvre
                     76 : "Container",       # Seine-maritime : Le Havre
@@ -89,7 +90,23 @@ table = {
                     80 : "Coeur",           # Napoléon
                     81 : "Raisin",          # Tarn
                     82 : "Olive",           # Ressemble à 80 dieux -> Grèce
-                    
+                    83 : "Spirale",         # Indice d'un terme premier de la suite de Fibo
+                    84 : "Planète",         # Nombre d'année pour une révolution de Jupiter
+                    85 : "Bateau",          # Vendée globe
+                    86 : "Moto",            # Accident de Coluche
+                    87 : "Skate",           # Chanson de Calogéro
+                    88 : "Montagne",        # Département des Vosges
+                    89 : "Guillotine",      # Révolution française
+                    90 : "Voiture,",        # Limitation de vitesse
+                    91 : "Ordinateur",      # Année du premier site web
+                    92 : "Village",         # Le nombre de lettre du plus long nom de commune
+                    93 : "Panier",          # Département de grand corps malade
+                    94 : "Chou",            # Immeuble en chou de Créteil
+                    95 : "Fennec",          # Origine de Nekfeu du collectif 1995
+                    96 : "Bouchon",         # Ancien département français de Liège
+                    97 : "Globe",           # Année de Naissance d'Hugo
+                    98 : "Trousse",         # Année de Naissance d'Auriane
+                    99 : "Champagne",       # Année de collection pour le vin
     }
 
 def simplifier(word):
@@ -130,17 +147,17 @@ def init_score(table_de_rappel, player_name, init_score = 5):
         erase = True if erase.lower() == 'y' else False
     if erase :
         scores = dict()
-        for i in range(len(table_de_rappel)+1):
+        for i in range(len(table_de_rappel)):
             scores[i] = [init_score, init_score]
         with open(path, 'w') as f:
             f.write(str(scores))
     else :
-        add = input('Voulez-vous mettre à jour la table de rappel ? (y/[n])')
-        add = True if add.lower() == 'y' else False
+        add = input('Voulez-vous mettre à jour la table de rappel ? ([y]/n)')
+        add = False if add.lower() == 'n' else True
         if add:
             with open(path, 'r') as f:
                 scores = ast.literal_eval(f.read())
-            for i in range(len(table_de_rappel)+1):
+            for i in range(len(table_de_rappel)):
                 if i not in scores : 
                     scores[i] = [init_score, init_score]
             with open(path, 'w') as f:
@@ -160,11 +177,37 @@ def upgrade_score(number:int, value:int, sens:int, player_name:str):
             scores[number][sens] += value
         with open(path, 'w') as f:
             f.write(str(scores))
+ 
+def ask_word(nombre, valeur, score):
+    user_value = input("Quel mot correspond au nombre {} : ".format(nombre))
+    if simplifier(user_value.lower()) == simplifier(valeur.lower()):
+        print("Correct !")
+        score += 1 
+    else :
+        print("Faux ! La réponse correcte était {}".format(valeur))
+    return score
 
+def print_results(score, n): 
+    
+    print("Vous avez un resultat de {}/{}".format(score, n))
+    if score < n//2 :
+        print("\nEssayez encore !")
+    elif score == n :
+        print("\nC'est Parfait !")
+    else :
+        print("\nBravo !")          
+ 
+def number_in_order(player_name, table_de_rappel):
+    score = 0
+    for nombre in table_de_rappel:
+        valeur = table_de_rappel[nombre]
+        score = ask_word(nombre, valeur, score)
+    
+    print_results(score, len(table_de_rappel))
 
 def table_trainer(n, path, player_name, table_de_rappel):
     score = 0
-    for i in range(n):
+    for _ in range(n):
         with open(path, 'r') as f:
             ponderations = ast.literal_eval(f.read())
         poids = list()
@@ -185,8 +228,8 @@ def table_trainer(n, path, player_name, table_de_rappel):
         if sens == 0 :
             user_value = input("Quel mot correspond au nombre {} ? ".format(nombre))
             user_value = simplifier(user_value.lower())
-            valeur = simplifier(valeur.lower())
-            if user_value == valeur :
+            valeur_simp = simplifier(valeur.lower())
+            if user_value == valeur_simp :
                 print("Correct !")
                 score += 1
                 
@@ -210,13 +253,8 @@ def table_trainer(n, path, player_name, table_de_rappel):
                 
                 upgrade_score(nombre, 1, sens, player_name)
                 
-    print("Vous avez un resultat de {}/{}".format(score, n))
-    if score < n//2 :
-        print("Essaie encore !")
-    elif score == n :
-        print("C'est Parfait !")
-    else :
-        print("Bravo !")
+    print_results(score, n)
+    main(player_name)
         
 def new_player(table_de_rappel):
     new_name = input("Quel est votre nom ? ").lower()
@@ -233,7 +271,16 @@ def main(player_name):
     
     table_de_rappel = importing_dic(dict_path)
     
-    choix = input("\n\n Joueur actuel : {} \n\n\n          Que voulez-vous faire ? \n\n          1 - Entrainement\n          2 - Mise à jour de la Table\n          3 - Changer de Joueur\n          4 - Initialiser les scores\n          5 - Retour au menu principal\n\n\n          CHOIX : ".format(player_name[0].upper()+player_name[1:]))
+    choix = input(("\n\n Joueur actuel : {} \n\n\n"
+                   "          Que voulez-vous faire ? \n\n"
+                   "          1 - Entrainement\n"
+                   "          2 - Mise à jour de la Table\n"
+                   "          3 - Changer de Joueur\n"
+                   "          4 - Initialiser les scores\n"
+                   "          5 - Les nombres dans l'ordre\n"
+                   "          6 - Tous les mots\n"
+                   "          7 - Ajouter 1 à tous les scores\n"
+                   "\n\n          CHOIX : ").format(player_name[0].upper()+player_name[1:]))
     print("\n")
     try :
         choix = int(choix)
@@ -260,10 +307,14 @@ def main(player_name):
         main(player_name)
     
     elif choix == 5 :
-        main(player_name)
+        number_in_order(player_name, table_de_rappel)
         
     else :
         print("Ce nombre n'est pas valide")
         main()
     
 main(player_name)
+
+
+#TODO - faire un mode pour faire dans l'ordre
+#TODO - Faire une fonction pour rajouter 1 a chaque score
