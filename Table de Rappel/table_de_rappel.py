@@ -97,7 +97,7 @@ table = {
                     87 : "Skate",           # Chanson de Calogéro
                     88 : "Montagne",        # Département des Vosges
                     89 : "Guillotine",      # Révolution française
-                    90 : "Voiture,",        # Limitation de vitesse
+                    90 : "Voiture",        # Limitation de vitesse
                     91 : "Ordinateur",      # Année du premier site web
                     92 : "Village",         # Le nombre de lettre du plus long nom de commune
                     93 : "Panier",          # Département de grand corps malade
@@ -261,6 +261,13 @@ def new_player(table_de_rappel):
     init_score(table_de_rappel, new_name)
     return new_name
 
+def list_nb_to_words(string, table_de_rappel):
+    liste = []
+    for i in range(len(string)//2) :
+        liste.append(int(string[2*i]+string[2*i+1]))
+    for i in liste :
+        print("{} correspond à {}".format(i, table_de_rappel[i]))
+
 
 player_name = 'robin'
         
@@ -280,6 +287,7 @@ def main(player_name):
                    "          5 - Les nombres dans l'ordre\n"
                    "          6 - Tous les mots\n"
                    "          7 - Ajouter 1 à tous les scores\n"
+                   "          8 - Donner les mots d'une chaîne de chiffre\n"
                    "\n\n          CHOIX : ").format(player_name[0].upper()+player_name[1:]))
     print("\n")
     try :
@@ -309,6 +317,10 @@ def main(player_name):
     elif choix == 5 :
         number_in_order(player_name, table_de_rappel)
         
+    elif choix == 8 :
+        string = input("Donner la liste de chiffre : ")
+        list_nb_to_words(string, table_de_rappel)
+    
     else :
         print("Ce nombre n'est pas valide")
         main()
