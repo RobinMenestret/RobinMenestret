@@ -59,6 +59,7 @@
 66 correspond à Trident
 47 correspond à Cassette
 9 correspond à Oeuf
+
 38 correspond à Truite
 44 correspond à Quatre quarts
 60 correspond à montre
@@ -99,6 +100,7 @@
 81 correspond à Raisin
 96 correspond à Bouchon
 44 correspond à Quatre quarts
+
 28 correspond à Lune
 81 correspond à Raisin
 9 correspond à Oeuf
@@ -120,6 +122,7 @@
 65 correspond à Dentier
 27 correspond à Guitare
 12 correspond à Bouse
+
 1 correspond à Bâton
 90 correspond à Voiture
 91 correspond à Ordinateur
@@ -148,6 +151,7 @@
 14 correspond à Lion
 12 correspond à Bouse
 73 correspond à Drapeau
+
 72 correspond à Ventouse
 45 correspond à Bombe
 87 correspond à Skate
@@ -165,6 +169,7 @@
 20 correspond à Vin
 96 correspond à Bouchon
 28 correspond à Lune
+
 29 correspond à Triskel
 25 correspond à Fromage
 40 correspond à Balle de tennis
@@ -183,6 +188,7 @@
 30 correspond à Menthe
 53 correspond à Sable
 5 correspond à Etoile
+
 48 correspond à Carotte cuite
 82 correspond à Olive
 4 correspond à Carré
@@ -198,6 +204,7 @@
 11 correspond à Bronze
 60 correspond à montre
 94 correspond à Chou
+
 33 correspond à Canette
 5 correspond à Etoile
 72 correspond à Ventouse
@@ -248,6 +255,7 @@
 19 correspond à Boeuf
 49 correspond à Carafe
 12 correspond à Bouse
+
 98 correspond à Trousse
 33 correspond à Canette
 67 correspond à Bretzel

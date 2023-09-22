@@ -2,6 +2,7 @@ import math
 import keyboard
 import time
 import random
+from matplotlib import pyplot as plt
 
 # Fonction pour obtenir un caractère sans appui sur "Entrée"
 def get_char():
@@ -9,7 +10,7 @@ def get_char():
     return event.name if event.event_type == keyboard.KEY_DOWN else ''
 
 # Obtiens le nombre de décimales à vérifier
-n_decimales = 223846264385000
+n_decimales = 1000
 # Calcul des décimales de pi
 decimales_pi = ("1415926535897932384626433832795028841"
                "97169399375105820974944592307816406286"
@@ -34,29 +35,68 @@ decimales_pi = ("1415926535897932384626433832795028841"
                "34999999")
 # Convertit pi en chaîne et prend n_decimales+2 caractères (3. inclus)
 
-def trainer(beg = 0):
+def derivate_plot(x, y):
+    z = [0]
+    t = []
+    u = []
+    for i in range(len(y)-1):
+        z.append(y[i+1]-y[i])
+    for i in range(len(x)//2):
+        t.append(x[2*i])
+        u.append(z[2*i])
+    plt.figure(dpi = 200)
+    plt.plot(t, u)
+    plt.xlabel('numéro de la décimale')
+    plt.ylabel('temps de réaction (s)')
+    plt.title('temps de reflexion selon la décimale de pi')
+    plt.show()
+
+def derivate_plot_2(x, y):
+    z = [0]
+    for i in range(len(y)-1):
+        z.append(y[i+1]-y[i])
+    plt.figure(dpi = 200)
+    plt.plot(x, z)
+    plt.xlabel('numéro de la décimale')
+    plt.ylabel('temps de réaction (s)')
+    plt.title('temps de reflexion selon la décimale de pi')
+    plt.show()
+    
+def trainer(beg = 0, end = 100, plotting = True):
+    errors = 0
+    x = [beg]
+    temps = [0.0]
     if beg != 0 :
         print("qui a-t-il après {}{}{}{}".format(decimales_pi[beg-4], decimales_pi[beg-3], decimales_pi[beg-2], decimales_pi[beg-1]))
     t0 = time.time()
     tmp = t0
     # Demande et vérifie les décimales
-    for i in range(n_decimales):    
+    for i in range(end):    
         decimale_entree = ''
         while decimale_entree == '':
             decimale_entree = get_char()
         tf = time.time()
+
         if i == 0 :
             t0 = tf
-        print(decimale_entree)
+            tmp = int(1000*(tf-t0))/1000
+        print(decimale_entree, end = "")
+        temps.append(tmp)
+        x.append(i+beg)
         if decimale_entree != decimales_pi[i+beg]:
-            print("Erreur à la décimale #{}: Tu as entré '{}', la bonne décimale est '{}'.".format(beg+i+1, decimale_entree, decimales_pi[i+beg]))
+            print("\n\n Erreur à la décimale #{}: Tu as entré '{}', la bonne décimale est '{}'.".format(beg+i+1, decimale_entree, decimales_pi[i+beg]))
             
-            print("Vous avez récité {} décimales en {} secondes soit environ {} décimales par secondes !".format(i, tmp, int(10*i/tmp)/10))
-            break
+            print("\nVous avez récité {} décimales en {} secondes soit environ {} décimales par secondes !".format(i, tmp, int(10*i/tmp)/10))
+            if plotting :
+                derivate_plot(x, temps)
+            errors +=1
         else :
             tmp = int(1000*(tf-t0))/1000
+            
     else:
-        print("Bravo, toutes les décimales sont correctes!")
+        print("\nBravo, vous avez fini ! ({} erreurs)".format(errors))
+        if plotting :
+            derivate_plot(x, temps)
 
 def space_pi():
     for i in range(len(decimales_pi)//2):
@@ -64,7 +104,7 @@ def space_pi():
         
 # comment zone : 
     
-def decimales_suivantes(beg = 0, end = 300, size = 5, parity = True):
+def decimales_suivantes(beg = 0, end = 400, size = 4, parity = True):
     if parity :
         ft_value = 2*random.randint(beg, end//2)
     else :
@@ -87,11 +127,12 @@ def decimales_suivantes(beg = 0, end = 300, size = 5, parity = True):
     
         
 #space_pi()
-def dec_par():
+def dec_par(n = 500):
     while True:
-        if not decimales_suivantes(parity = False):
+        if not decimales_suivantes(end = n, parity = True):
             break
 
-dec_par()
+trainer(end = 500)
+#dec_par(500)
 
 #https://github.com/RobinMenestret/RobinMenestret.git
