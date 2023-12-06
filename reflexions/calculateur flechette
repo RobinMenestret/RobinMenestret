@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jan 13 17:25:27 2023
+
+@author: pc
+"""
+
+nb_players = input("Combien y a t-il de joueurs : ")
+try :
+    nb_players = int(nb_players)
+except :
+    print("entrez un nombre valide s'il vous plait")
+mode_de_jeu = input("Quel mode souhaitez-vous ? (1) 101, (2) 301   :  ")
+
+
+
+end = False
+while end == False :
+    if mode_de_jeu == 1 :
+        pass
+    

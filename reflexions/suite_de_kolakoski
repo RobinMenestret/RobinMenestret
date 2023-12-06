@@ -1,0 +1,18 @@
+
+n=10000000
+A = [1]
+for i in range(n):
+    temp = []
+    for j in range(A[i]):
+        temp.append(3-A[-1])
+    A.extend(temp)
+#print(A)
+
+uns = 0
+
+for i in A :
+    if i == 1:
+        uns +=1
+
+print(uns/len(A))
+A = A[]

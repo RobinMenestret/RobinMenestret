@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Feb 15 08:40:29 2023
+
+@author: pc
+"""
+base = 10
+n=10000
+
+for n in [10,100,1000,10000, 100000, 1000000]:
+    for i in range(n):
+        nb = str(i)
+        if len(nb)<len(str(n))-1:
+            continue
+        nb = list(nb)
+        nb.sort()
+        wait = nb.copy()
+        nb.reverse()
+        inv = 0
+        sort = 0
+        for j in range(len(str(n))-1):
+            inv += 10**(len(str(n))-j-2)*int(nb[j])
+            sort+= 10**(len(str(n))-j-2)*int(wait[j]) 
+        final = inv - sort
+        #print(inv)
+        #print(sort)
+        if final == i :
+            print(final)
